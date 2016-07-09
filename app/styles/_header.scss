@@ -1,0 +1,38 @@
+.header {
+  text-align: center;
+  padding: 5px 0;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header__github-link {
+  color: #333;
+
+  :hover {
+    color: #4078c0;
+  }
+}
+
+.header__profile {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+
+.header__profile-image {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.header__dropdown {
+  position: absolute;
+  z-index: 1;
+  top: 38px;
+  right: 20px;
+  text-align: right;
+}
+
+.header__dropdown-item {
+  min-width: 100px;
+}

@@ -1,0 +1,30 @@
+<div class='header'>
+  <a class='header__github-link' href="http://github.com">
+    <span class='mega-octicon octicon-mark-github'></span>
+  </a>
+  {{#if session.isAuthenticated}}
+    <div class='header__profile right' {{action 'toggleHeaderDropdown'}}>
+      <img class='header__profile-image avatar avatar-small' src="{{session.currentUser.profileImageURL}}" alt="{{session.currentUser.username}}">
+    </div>
+
+    {{#if showHeaderDropdown}}
+      <nav class='header__dropdown menu'>
+        <span class="menu-heading">
+          {{session.currentUser.username}}
+        </span>
+        <a href='#' class='header__dropdown-item menu-item' {{action 'invalidateSession'}}>Sign out</a>
+      </nav>
+    {{/if}}
+
+  {{/if}}
+
+</div>
+
+{{outlet}}
+
+<div class='footer'>
+  Made with
+  <span class="octicon octicon-heart"></span>
+  by
+  <a href='https://twitter.com/danpazsoldan' target='_blank'>@danpazsoldan</a>
+</div>

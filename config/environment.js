@@ -4,8 +4,22 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ghn',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    firebase: 'https://luminous-fire-8925.firebaseio.com/',
+    apiHost: 'https://api.github.com',
     baseURL: '/',
     locationType: 'auto',
+
+    'ember-simple-auth': {
+      routeAfterAuthentication: 'notifications',
+      routeIfAlreadyAuthenticated: 'notifications',
+      authorizer: 'authorizer:oauth2'
+    },
+
+    torii: {
+      sessionServiceName: 'session',
+    },
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

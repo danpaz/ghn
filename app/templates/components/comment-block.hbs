@@ -1,0 +1,25 @@
+<div class='comment-block__avatar'>
+  <img class='avatar' src={{comment.avatar}} alt={{comment.user}}>
+</div>
+
+<div class='comment-block__content'>
+  <div class='comment-block__header'>
+    <a href='https://github.com/{{comment.user}}'><strong>{{comment.user}}</strong></a> commented {{if comment.diff 'on the diff ' ''}}<a href={{comment.url}} target='_blank'>{{moment-from-now comment.created}}</a>
+  </div>
+
+  <div class='comment-block__body'>
+    {{#if comment.diff}}
+      <div class='comment-block__body-diff'>
+        <pre><code class='diff'>{{{comment.highlightedDiff}}}</code></pre>
+      </div>
+    {{/if}}
+    <div class='comment-block__body-markdown'>
+      {{markdown-to-html
+        markdown=comment.body
+        ghCodeBlocks=true
+        tasklists=true
+        simplifiedAutoLink=true
+      }}
+    </div>
+  </div>
+</div>

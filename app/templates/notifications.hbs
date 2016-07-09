@@ -1,0 +1,75 @@
+<div class='container'>
+
+<div class='columns'>
+  <div class='one-fifth column'>
+    <h2>Notifications</h2>
+
+    <ul class='filter-list'>
+      <li>
+        {{#link-to
+          'notifications'
+          (query-params all='false' page='1')
+          activeClass='selected'
+          class='filter-item'
+        }}
+          Unread
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to
+          'notifications'
+          (query-params all='true' page='1')
+          activeClass='selected'
+          class='filter-item'
+        }}
+          All
+        {{/link-to}}
+      </li>
+    </ul>
+    <hr>
+    <ul class='filter-list'>
+      {{#each model as |notification|}}
+        <li>
+          <a class='filter-item' href="{{if all '?all=true'}}#{{notification.id}}">
+            {{notification.title}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class='four-fifths column'>
+    <h2 class='text-right'>
+      <button class="btn btn-sm" type="button" {{action 'refresh'}}>
+        <span class="octicon octicon-sync"></span>
+      </button>
+    </h2>
+
+    {{#if model.length}}
+      {{#each model as |notification|}}
+        {{notification-block
+          id=notification.id
+          notification=notification
+          onClickCheckbox=(action 'markRead')
+        }}
+      {{/each}}
+    {{else}}
+      <div class="blankslate spacious">
+        <span class="mega-octicon octicon-bell"></span>
+        <h3>No new notifications.</h3>
+        <p>Depending on your notification settings, you’ll see updates here for your conversations in watched repositories.</p>
+      </div>
+    {{/if}}
+
+    <div class='notifications__pagination'>
+      {{#if previousPage}}
+        {{#link-to 'notifications' (query-params page=previousPage) class='btn btn-outline'}}Newer{{/link-to}}
+      {{/if}}
+      {{#if nextPage}}
+        {{#link-to 'notifications' (query-params page=nextPage) class='btn btn-outline'}}Older{{/link-to}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+</div>

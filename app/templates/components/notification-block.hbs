@@ -1,0 +1,74 @@
+<div class='notification-block__header'>
+  <div class='notification-block__icon'>
+    {{#if notification.isPR}}
+      <span class="mega-octicon octicon-git-pull-request"></span>
+    {{else if notification.isIssue}}
+      <span class="mega-octicon octicon-issue-opened"></span>
+    {{/if}}
+  </div>
+
+  <div class='notification-block__description'>
+    <strong>
+      {{notification.title}}
+      <a href={{notification.url}} target='_blank'>
+        <span class="octicon octicon-link-external"></span>
+      </a>
+    </strong>
+    <div class='notification-block__repo'>
+      <a target='_blank' href="https://github.com/{{notification.owner}}/{{notification.repo}}">{{notification.owner}}/{{notification.repo}}</a>
+    </div>
+  </div>
+
+    {{#if notification.unread}}
+    <div class='notification-block__check right'>
+      <a {{action 'onClickCheckbox' notification.id}} title='Mark as read'>
+        <span class="mega-octicon octicon-check"></span>
+      </a>
+    </div>
+    {{/if}}
+</div>
+
+<div class='notification-block__body'>
+
+  {{#if notification.activity.length}}
+
+    {{#if notification.readActivity.length}}
+      <div class='notification-block__toggle-unread' {{action 'toggleShowRead'}}>
+          <span class="octicon octicon-{{if showUnreadOnly 'history' 'fold'}}"></span>
+          {{if showUnreadOnly 'Show' 'Hide'}} previous activity
+      </div>
+    {{/if}}
+
+    <div class='notification-block__comments'>
+      {{#if showUnreadOnly}}
+      {{else}}
+        {{#each notification.sortedReadActivity as |activity|}}
+          {{#if activity.isComment}}
+            {{comment-block comment=activity}}
+          {{else if activity.isEvent}}
+            {{#if activity.hasIcon}}
+              {{event-block event=activity}}
+            {{/if}}
+          {{/if}}
+        {{/each}}
+      {{/if}}
+
+      {{#each notification.sortedUnreadActivity as |activity|}}
+        {{#if activity.isComment}}
+          {{comment-block comment=activity}}
+        {{else if activity.isEvent}}
+          {{#if activity.hasIcon}}
+            {{event-block event=activity}}
+          {{/if}}
+        {{/if}}
+      {{/each}}
+    </div>
+
+  {{else}}
+    <div class='notification-block__no-comments'>
+      No comments yet.
+    </div>
+  {{/if}}
+
+  {{yield}}
+</div>

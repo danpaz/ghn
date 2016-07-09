@@ -1,0 +1,58 @@
+$bg-color: #fafafa;
+$border-color: #e5e5e5;
+
+.notification-block {
+  color: #666;
+  background-color: $bg-color;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  padding: 10px;
+  padding-bottom: 0;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.notification-block__header {
+  height: 34px;
+}
+
+.notification-block__icon {
+  float: left;
+}
+
+.notification-block__description {
+  float: left;
+  margin-left: 10px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 10px;
+}
+
+.notification-block__repo {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.notification-block__check {
+  float: right;
+  &:hover {
+    color: #4078c0;
+    cursor: pointer;
+  }
+}
+
+.notification-block__no-comments {
+  padding: 10px 0px;
+}
+
+.notification-block__toggle-unread {
+  text-align: center;
+  padding: 15px 0 5px;
+
+  &:hover {
+    color: #4078c0;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,15 @@
+<div class='event-block__body-icon'>
+  <span class='octicon {{event.iconClass}}'></span>
+</div>
+
+<div class='event-block__body-text'>
+  <a href='https://github.com/{{event.actor}}'>
+    {{event.actor}}
+  </a>
+  {{#if event.labelname}}
+    {{event.labelAction}} the <span class='event-block__body-label' style='background-color: #{{event.labelcolor}}'>{{event.labelname}}</span> label
+  {{else}}
+    {{event.name}}
+  {{/if}}
+  {{moment-from-now event.created}}
+</div>

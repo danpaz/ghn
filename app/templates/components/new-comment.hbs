@@ -1,0 +1,10 @@
+<form {{action 'onSubmit' body on='submit'}}>
+  {{textarea
+    class='new-comment__input'
+    placeholder='New comment...'
+    value=body
+    rows='1'
+    cols='87'
+  }}
+  <button type='submit' class='btn btn-primary right'>Comment</button>
+</form>
